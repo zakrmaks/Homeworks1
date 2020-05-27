@@ -1,13 +1,14 @@
 package HomeWork_5;
 
 public class IntArray {
-    private int[] array = new int[10];
-    private int size = 0;
+    private int size = 10;
+    private int[] array = new int[size];
 
     public IntArray(int[] array) {
         this.array = copyOf(array);
         this.size = array.length;
     }
+
     public IntArray() {
     }
 
@@ -17,7 +18,7 @@ public class IntArray {
         }
         String line = "";
         for (int i = 0; i < array.length; i++) {
-            if (array[i] == 0)break;
+            if (array[i] == 0) continue;
             line += array[i] + ", ";
         }
         line = line.substring(0, line.length() - 2);
@@ -32,11 +33,15 @@ public class IntArray {
         return -1;
     }
 
-    public int contain(int findNumber) {
+    public boolean contain(int findNumber) {
+        boolean count = false;
         for (int i = 0; i < array.length; i++) {
-            if (array[i] == findNumber) return ++i;
+            if (array[i] == findNumber) {
+                count = true;
+                break;
+            }
         }
-        return -1;
+        return count;
     }
 
     public int sizeOf() {
@@ -58,33 +63,38 @@ public class IntArray {
     public boolean isEmpty() {
         return size == 0;
     }
-    public void addAll(int [] arr){
-        int[] newArr = new int [size*2];
+
+    public void addAll(int[] arr) {
+        int[] newArr = new int[size * 2];
         newArr = array;
         for (int i = 0, j = 0; i < newArr.length; i++) {
             newArr[i] = array[i];
-                if (array[i] == 0){
-                    if (arr.length == j) break;
-                    newArr[i]= arr[j];
-                    j++;
-                }
+            if (array[i] == 0) {
+                if (arr.length == j) break;
+                newArr[i] = arr[j];
+                j++;
             }
+        }
         this.array = newArr;
     }
-    public void clean(){
-        array = null;
+
+    public void clean() {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = 0;
+        }
     }
-    public  void sort() {
+
+    public void sort() {
         boolean sorted = false;
         int temp;
-        while(!sorted) {
+        while (!sorted) {
             sorted = true;
-            for (int i = 0; i < array.length ; i++) {
-                if (array[i] > array[i+1]) {
-                    if (array[i+1] == 0)break;
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] > array[i + 1]) {
+                    if (array[i + 1] == 0) break;
                     temp = array[i];
-                    array[i] = array[i+1];
-                    array[i+1] = temp;
+                    array[i] = array[i + 1];
+                    array[i + 1] = temp;
                     sorted = false;
                 }
             }
