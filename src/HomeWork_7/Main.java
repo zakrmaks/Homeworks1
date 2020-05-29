@@ -1,7 +1,7 @@
 package HomeWork_7;
 
-public class Main {
 
+public class Main {
     public static void main(String[] args) {
 	Student john = new Student("John");
         Student mark = new Student("Mark");
@@ -14,16 +14,19 @@ public class Main {
         Student[] group3 = new Student[]{john, mark, paul};
         Collection type = new Collection(group1);
         Collection ex2 = new Collection(group2);
-        System.out.println(type.isEmpty());
-        System.out.println(type.contains(petrosian));
+        Collection test3 = new Collection(group3);
+        System.out.println("Is empty? " + type.isEmpty());
+        System.out.println("contain? " +  type.contains(petrosian));
         type.add(petrosian);
+        System.out.println("Contain? " + type.contains(petrosian));
         type.add(vasosian);
         type.add(multosian);
         type.remove(petrosian);
-//        System.out.println(type.remove(paul));
-//        type.addAll(ex2);
+        System.out.println("Contains all? " + type.containAll(test3));
+        System.out.println("Contain ?" + type.contains(petrosian));
+        System.out.println("remove? " + type.remove(paul));
+        type.addAll(ex2);
         System.out.println();
         type.removeAll(ex2);
-        System.out.println(type.containAll(ex2));
     }
 }

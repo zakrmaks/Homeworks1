@@ -1,17 +1,20 @@
 package HomeWork_7;
 
 public class Collection {
-    private int SIZE_OF = 4;
-    private Object[] array = new Object[SIZE_OF];
+    private Object[] array = new Object[0];
+
+    public Collection() {
+    }
 
     public Collection(Object[] s) {
-        this.SIZE_OF = s.length;
-        this.array = s;
+        Object[] temp = new Object[s.length];
+        System.arraycopy(s, 0, temp, 0, s.length);
+        array = temp;
     }
 
     public boolean isEmpty() {
         boolean isEmpty = false;
-        for (int i = 0; i < SIZE_OF; i++) {
+        for (int i = 0; i < array.length; i++) {
             if (array[i] == null) isEmpty = true;
         }
         return isEmpty;
@@ -28,21 +31,20 @@ public class Collection {
     }
 
     public void add(Object a) {
-        if (SIZE_OF == array.length) {
-            Object[] newArray = new Object[SIZE_OF * 2];
-            for (int i = 0; i < SIZE_OF; i++) {
-                newArray[i] = array[i];
-            }
-            array = newArray;
+        Object[] newArray = new Object[array.length + 1];
+        for (int i = 0; i < array.length; i++) {
+            newArray[i] = array[i];
         }
-        array[SIZE_OF] = a;
-        SIZE_OF++;
+        newArray[array.length] = a;
+        array = newArray;
+
     }
+
 
     public boolean remove(Object s) {
         int count = -1;
-        for (int i = 0; i < SIZE_OF; i++) {
-            if (array[i] == s) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(s)) {
                 array[i] = 0;
                 count++;
                 break;
@@ -53,11 +55,10 @@ public class Collection {
     }
 
 
-
     public void addAll(Collection s) {
-        Object[] newArray = new Object[SIZE_OF + s.array.length];
-       int count = 0;
-        for (int i = 0; i < SIZE_OF; i++) {
+        Object[] newArray = new Object[array.length + s.array.length];
+        int count = 0;
+        for (int i = 0; i < array.length; i++) {
             newArray[i] = array[i];
         }
         for (int i = 0; i < newArray.length; i++) {
@@ -70,63 +71,68 @@ public class Collection {
             }
         }
         array = newArray;
-        SIZE_OF++;
     }
-public void retainAll(Collection s){
-    Object[] newArray = new Object[s.array.length];
-    for (int i = 0; i < s.array.length; i++) {
-        newArray[i] = s.array[i];
+
+    public void retainAll(Collection s) {
+        Object[] newArray = new Object[s.array.length];
+        for (int i = 0; i < s.array.length; i++) {
+            for (int j = 0; j < s.array.length; j++) {
+                if (array[i].equals(s.array[j])){
+                    newArray[i]= s.array[j];
+                    break;
+                }
+
+            }
+        }
+        array = newArray;
     }
-    array = newArray;
-}
-public void removeAll(Collection s){
+
+    public void removeAll(Collection s) {
         int count = 0;
-    for (int i = 0; i < s.array.length; i++) {
-            for (int j = count; j < SIZE_OF; j++) {
-                if (array[j] == s.array[i]) {
+        for (int i = 0; i < s.array.length; i++) {
+            for (int j = count; j < array.length; j++) {
+                if (array[j].equals(s.array[i])) {
                     array[j] = 0;
                     count++;
                     break;
                 }
+            }
         }
+        arrayCopy();
     }
-    arrayCopy();
-}
-public boolean containAll(Collection s){
+
+    public boolean containAll(Collection s) {
         int count = 0;
-    for (int i = 0; i < array.length; i++) {
-        for (int j = 0; j < s.array.length; j++) {
-            if (array[i] == s.array[j]){
+        for (int i = 0; i < s.array.length; i++) {
+            if (contains(s.array[i])){
                 count++;
-                break;
             }
 
         }
-
+        return (count >= s.array.length ? true : false);
     }
-    return (count == array.length? true : false);
-}
-private void arrayCopy(){
+
+    private void arrayCopy() {
         int count = 0;
-       int countOfArrayLength = 0;
+        int countOfArrayLength = 0;
 
-    for (int i = 0; i < array.length; i++) {
-        if (array[i] == (Object)0) count++;
-    }
-        Object[] temp = new Object[array.length-count];
-    for (int i = 0; i < array.length; i++) {
-        for (int j = countOfArrayLength; j < array.length-count; j++) {
-            if (array[i].equals(0)) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].equals(0)) count++;
+        }
+        Object[] temp = new Object[array.length - count];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = countOfArrayLength; j < array.length - count; j++) {
+                if (array[i].equals(0)) {
+                    break;
+                }
+                if (j >= array.length - count) break;
+                temp[j] = array[i];
+                countOfArrayLength++;
                 break;
             }
-            if (j == array.length - count) break;
-            temp[j] = array[i];
-            countOfArrayLength++;
-            break;
         }
+        this.array = temp;
     }
-    this.array = temp;
-}
 
 }
 
