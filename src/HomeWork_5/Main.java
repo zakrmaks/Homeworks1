@@ -13,7 +13,7 @@ public class Main {
         System.out.println(array.indexOf(2));
         System.out.println(array.contain(15));
         System.out.println(array.sizeOf());
-        array.sort();
+//        array.sort();
         System.out.println(array.ToString());
         System.out.println(array.contain(5));
         array.clean();
@@ -21,6 +21,7 @@ public class Main {
         array.add(14);
         array.add(15);
         array.add(3);
+        array.sort();
         System.out.println(array.ToString());
     }
 }

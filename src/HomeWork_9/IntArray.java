@@ -1,4 +1,4 @@
-package HomeWork_5;
+package HomeWork_9;
 
 public class IntArray {
     private int[] array = new int[0];
@@ -10,6 +10,22 @@ public class IntArray {
     public IntArray() {
     }
 
+    public void sort(){
+        boolean isSorted = false;
+        int buf;
+        while(!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < array.length-1; i++) {
+                if(array[i] > array[i+1]){
+                    isSorted = false;
+
+                    buf = array[i];
+                    array[i] = array[i+1];
+                    array[i+1] = buf;
+                }
+            }
+        }
+    }
     public int indexOf(int indexToFind) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] == indexToFind) return i+1;
@@ -65,22 +81,26 @@ public class IntArray {
         }
         return temp;
     }
-    public void sort(){
-        boolean isSorted = false;
-        int buf;
-        while(!isSorted) {
-            isSorted = true;
-            for (int i = 0; i < array.length-1; i++) {
-                if(array[i] > array[i+1]){
-                    isSorted = false;
+    public int binarySearch(int key){
+        int index = -1;
+        int low = 0;
+        int high = array.length-1;
 
-                    buf = array[i];
-                    array[i] = array[i+1];
-                    array[i+1] = buf;
-                }
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (array[mid] < key) {
+                low = mid + 1;
+            } else if (array[mid] > key) {
+                high = mid - 1;
+            } else if (array[mid] == key) {
+                index = mid;
+                break;
             }
         }
+        return index+1;
     }
+
+
     public String ToString() {
         if (isEmpty() || array == null) {
             return "[]";
