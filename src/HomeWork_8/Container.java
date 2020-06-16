@@ -38,6 +38,19 @@ public class Container implements Collection {
 
     @Override
     public Iterator iterator() {
+////        Iterator iter = new Iterator() {
+//            @Override
+//            public boolean hasNext() {
+//                if (array[array.length+1].equals(null))return tr
+//                return false;
+//            }
+//
+//            @Override
+//            public Object next() {
+//                return null;
+//            }
+//        }
+//        return iter;
         return null;
     }
 

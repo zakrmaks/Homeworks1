@@ -1,10 +1,12 @@
 package HomeWork_9;
 
 import java.math.BigInteger;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
 //new Fibonachi();
 IntArray intarr = new IntArray();
 intarr.add(4);
