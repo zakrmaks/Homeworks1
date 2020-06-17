@@ -1,5 +1,7 @@
 package HomeWork_8;
 
+
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -26,6 +28,7 @@ public class Container implements Collection {
         return false;
     }
 
+
     @Override
     public boolean contains(Object o) {
         for (int i = 0; i < array.length; i++) {
@@ -38,20 +41,20 @@ public class Container implements Collection {
 
     @Override
     public Iterator iterator() {
-////        Iterator iter = new Iterator() {
-//            @Override
-//            public boolean hasNext() {
-//                if (array[array.length+1].equals(null))return tr
-//                return false;
-//            }
-//
-//            @Override
-//            public Object next() {
-//                return null;
-//            }
-//        }
-//        return iter;
-        return null;
+        return new Iterator() {
+            private int index = 0;
+            @Override
+            public boolean hasNext() {
+                return index < array.length;
+            }
+
+            @Override
+            public Object next() {
+                Object result = array[index];
+                index++;
+                return result;
+            }
+        };
     }
 
     @Override
@@ -120,7 +123,7 @@ public class Container implements Collection {
     @Override
     public boolean removeAll(Collection c) {
         for (int i = 0; i < c.size(); i++) {
-           remove(c.toArray()[i]);
+            remove(c.toArray()[i]);
         }
         return true;
     }
@@ -129,9 +132,9 @@ public class Container implements Collection {
     public boolean containsAll(Collection c) {
         int count = 0;
         for (int i = 0; i < array.length; i++) {
-         if (contains(c.toArray()[i]) == true){
-             count++;
-         }
+            if (contains(c.toArray()[i]) == true){
+                count++;
+            }
         }
         return (count >= c.size()? true : false);
     }

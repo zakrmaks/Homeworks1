@@ -33,7 +33,20 @@ public class MyLinkedList implements Collection {
 
     @Override
     public Iterator iterator() {
-        return null;
+        return new Iterator() {
+
+            @Override
+            public boolean hasNext() {
+                return head != null ;
+            }
+
+            @Override
+            public Object next() {
+                Object result = head.getData();
+                head = head.getNext();
+                return result;
+            }
+        };
     }
 
     @Override
@@ -79,7 +92,7 @@ public class MyLinkedList implements Collection {
             next = next.getNext();
             current = current.getNext();
         }
-         if (tail.getData().equals(o)){
+        if (tail.getData().equals(o)) {
             tail = temp;
         }
         return false;
@@ -104,12 +117,12 @@ public class MyLinkedList implements Collection {
     public boolean retainAll(Collection c) {
         Node curent = head;
         MyLinkedList temp = new MyLinkedList();
-     for (Object object : c.toArray()){
-         if (!object.equals(curent.getData())){
-             temp.add(object);
-         }
-     }
-     head = temp.head;
+        for (Object object : c.toArray()) {
+            if (!object.equals(curent.getData())) {
+                temp.add(object);
+            }
+        }
+        head = temp.head;
         return true;
     }
 
@@ -149,5 +162,29 @@ public class MyLinkedList implements Collection {
         return temp;
     }
 
+    public static class Node {
+        private Object data;
+        private Node next;
 
+        public Node(Object data, Node next) {
+            this.data = data;
+            this.next = next;
+        }
+
+        public Object getData() {
+            return data;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+
+        public void setData(Object object) {
+            this.data = object;
+        }
+
+        public void setNext(Node next) {
+            this.next = next;
+        }
+    }
 }

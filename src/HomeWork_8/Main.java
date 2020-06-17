@@ -19,8 +19,10 @@ public class Main {
         System.out.println(container1.size());
         System.out.println(container1.contains(petrosian));
         System.out.println(container1.add(petrosian));
-        System.out.println(container1.remove(petrosian));
+//        System.out.println(container1.remove(petrosian));
 //        System.out.println(container1.retainAll(container3));
-        System.out.println(container1.removeAll(container2));
+//        System.out.println(container1.removeAll(container2));
+        System.out.println(container1.iterator().hasNext());
+        System.out.println(container1.iterator().next());
     }
 }

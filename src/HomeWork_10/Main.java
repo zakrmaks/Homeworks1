@@ -25,8 +25,17 @@ public class Main {
         list.addAll(list1);
         System.out.println(list.toString());
 //        list.removeAll(list1);
+//Iterator iter = MyLinkedList.iterator();
         System.out.println(list.containsAll(list1));
         System.out.println(list.retainAll(list1));
         System.out.println(list.toString());
+        System.out.println(list.iterator().hasNext());
+        System.out.println(list.iterator().next().toString());
+        System.out.println(list.iterator().hasNext());
+        System.out.println(list.iterator().next().toString());
+        System.out.println(list.iterator().hasNext());
+        System.out.println(list.iterator().next().toString());
+        System.out.println(list.iterator().hasNext());
+
     }
 }
