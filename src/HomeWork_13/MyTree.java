@@ -36,26 +36,75 @@ public class MyTree implements Set {
         }
     }
 
+
     @Override
     public Iterator iterator() {
         return new Iterator() {
-            Node temp = root;
+
+            private Node current;
+
+
             @Override
             public boolean hasNext() {
-                return false;
+                if (current == null) {
+                    return true;
+                }
+                return findNode(root) != null;
+
             }
 
             @Override
             public Object next() {
-                return null;
+
+                if (current == null) {
+                    current = findFirstNode(root);
+                    return current.data;
+                }
+                current = findNode(root);
+                return current.data;
+            }
+
+            private Node findNode(Node node) {
+                if (node.data == current.data && node.right == null) {
+                    return null;
+                } else if (current.data < node.data) {
+                    if (node.left != null) {
+                        if (findNode(node.left) == null) {
+                            return node;
+                        } else {
+                            return findNode(node.left);
+                        }
+
+                    } else {
+                        return node;
+                    }
+                } else {
+                    return findNode(node.right);
+                }
             }
         };
     }
 
+
+    private Node findFirstNode(Node node) {
+        Node current = node;
+        if (node.left == null) {
+            return current;
+        }
+        return findFirstNode(node.left);
+    }
+
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] array = new Object[size];
+        Iterator iter = iterator();
+        for (int i = 0; i < array.length; i++) {
+            array[i] = iter.next();
+        }
+
+        return array;
     }
+
 
     @Override
     public boolean add(Object o) {
@@ -67,7 +116,7 @@ public class MyTree implements Set {
             appendNode(data, root);
         }
         size++;
-        return false;
+        return true;
     }
 
     private void appendNode(Integer toAdd, Node node) {
@@ -88,17 +137,20 @@ public class MyTree implements Set {
         }
     }
 
+//FIXME delete first node(((!!!!
     @Override
     public boolean remove(Object o) {
         if (!contains(o)) {
             return false;
         } else {
             deleteNode(root, (int) o);
+            size--;
             return true;
         }
     }
 
-    public Node deleteNode(Node node, int value) { if (node == null)
+    public Node deleteNode(Node node, int value) {
+        if (node == null)
             return null;
         if (value < node.data) {
             node.left = deleteNode(node.left, value);
@@ -130,7 +182,7 @@ public class MyTree implements Set {
 
     @Override
     public boolean addAll(Collection c) {
-        for (Object o : c.toArray()){
+        for (Object o : c.toArray()) {
             add(o);
         }
 
@@ -146,7 +198,7 @@ public class MyTree implements Set {
     @Override
     public boolean removeAll(Collection c) {
         for (Object o : c.toArray()) {
-            if (!remove(o)){
+            if (!remove(o)) {
                 return false;
             }
         }
@@ -156,8 +208,8 @@ public class MyTree implements Set {
     @Override
     public boolean retainAll(Collection c) {
         MyTree temp = new MyTree();
-        for (Object o: c.toArray()){
-            if (contains(o)){
+        for (Object o : c.toArray()) {
+            if (contains(o)) {
                 temp.add(o);
             }
 
@@ -175,10 +227,41 @@ public class MyTree implements Set {
         }
         return true;
     }
-//TODO methode
+
+    //TODO methode
     @Override
     public Object[] toArray(Object[] a) {
         return new Object[0];
+    }
+
+    @Override
+    public String toString() {
+        return print(root);
+
+    }
+    private String print (Node node) {
+        if (node == null){
+            return " ";
+        }
+        String l = print(node.left);
+        String current = String.valueOf(node.data);
+        String r = print(node.right);
+        String result = "";
+
+            if (! l.isEmpty() && l.length() != 0){
+                result += l  ;
+            }else{
+                result += l +",";
+            }
+
+            result += current + ",";
+
+            if ( !r.isEmpty() && r.length() != 0){
+                result += r ;
+            }else{
+            result += r +",";
+            }
+        return result;
     }
 
     private class Node {
@@ -191,4 +274,8 @@ public class MyTree implements Set {
         Node left;
         Node right;
     }
+
+
 }
+
+

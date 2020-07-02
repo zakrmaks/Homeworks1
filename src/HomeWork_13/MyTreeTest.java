@@ -1,102 +1,113 @@
 package HomeWork_13;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.Iterator;
 
 public class MyTreeTest {
-    MyTree binarytree = new MyTree();
-
-
+    private MyTree binarytree;
+    private MyTree testTree;
+@Before
+ public void setUp(){
+    testTree = new MyTree();
+     binarytree = new MyTree();
+     binarytree.add(5);
+     binarytree.add(6);
+     binarytree.add(7);
+     binarytree.add(8);
+    testTree.add(5);
+    testTree.add(6);
+    testTree.add(7);
+    testTree.add(8);
+ }
+ @After
+ public void afterTest(){
+     binarytree.add(5);
+     binarytree.add(6);
+     binarytree.add(7);
+     binarytree.add(8);
+ }
     @Test
-    public void size() {
-        binarytree.add(4);
-        Assert.assertEquals(1,binarytree.size());
+    public void testSize() {
+        Assert.assertEquals(4,binarytree.size());
     }
 
     @Test
-    public void isEmpty() {
-        binarytree.add(4);
+    public void testIsEmpty() {
         Assert.assertEquals(false,binarytree.isEmpty());
     }
 
     @Test
-    public void contains() {
-        binarytree.add(4);
-        binarytree.add(5);
-        binarytree.add(6);
-        binarytree.add(7);
+    public void testContains() {
+
         Assert.assertEquals(false,binarytree.contains(2));
     }
 
     @Test
     public void add() {
+        Assert.assertEquals(true,binarytree.add(5));
     }
 
     @Test
     public void remove(){
-        binarytree.add(4);
-        binarytree.add(5);
-        binarytree.add(6);
-        binarytree.add(7);
-        binarytree.remove(4);
-        System.out.println();
+        Object[] temp = new Object[]{5,7,8};
+
+        binarytree.remove(6);
+        Object[] temp2 = binarytree.toArray();
+        Assert.assertArrayEquals(temp,temp2);
     }
 
     @Test
-    void testSize() {
+    public void iterator() {
+        Iterator iter = binarytree.iterator();
+        Assert.assertEquals(true, iter.hasNext());
+        iter.next();
+        Assert.assertEquals(true, iter.hasNext());
+        iter.next();
+        Assert.assertEquals(true, iter.hasNext());
+        iter.next();
+        Assert.assertEquals(true, iter.hasNext());
+        iter.next();
+        Assert.assertEquals(false, iter.hasNext());
     }
 
     @Test
-    void testIsEmpty() {
+    public void toArray() {
+Object[] temp = new Object[]{5,6,7,8};
+Object[] temp2 = binarytree.toArray();
+        for (int i = 0; i <temp2.length ; i++) {
+            Assert.assertEquals(temp[i], temp2[i]);
+        }
     }
 
     @Test
-    void testContains() {
+    public void addAll() {
+    Assert.assertEquals(true,binarytree.addAll(testTree));
     }
 
     @Test
-    void iterator() {
+    public void clear() {
+    binarytree.clear();
+    Assert.assertEquals(true, binarytree.isEmpty());
     }
 
     @Test
-    void toArray() {
+    public  void removeAll() {
+    Assert.assertEquals(true, binarytree.removeAll(testTree));
     }
 
     @Test
-    void testAdd() {
+    public void retainAll() {
+    Assert.assertEquals(true,binarytree.retainAll(testTree));
     }
 
     @Test
-    void testRemove() {
+    public  void containsAll() {
+    Assert.assertEquals(true,binarytree.containsAll(testTree));
     }
 
-    @Test
-    void deleteNode() {
-    }
 
-    @Test
-    void addAll() {
-    }
-
-    @Test
-    void clear() {
-    }
-
-    @Test
-    void removeAll() {
-    }
-
-    @Test
-    void retainAll() {
-    }
-
-    @Test
-    void containsAll() {
-    }
-
-    @Test
-    void testToArray() {
-    }
 }
