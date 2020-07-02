@@ -7,10 +7,9 @@ import java.util.Iterator;
 
 
 public class Container implements Collection {
-    Object[] array = new Object[0];
+    Object[] array;
 
     public Container() {
-
     }
 
     public Container(Object[] array) {
@@ -24,8 +23,7 @@ public class Container implements Collection {
 
     @Override
     public boolean isEmpty() {
-        if (array == null) return true;
-        return false;
+        return array == null;
     }
 
 

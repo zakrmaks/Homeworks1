@@ -12,8 +12,10 @@ public class Main {
         Student[] group1 = new Student[]{john, mark, paul};
         Student[] group2 = new Student[]{john, mark, paul};
         Student[] group3 = new Student[]{petrosian, vasosian, multosian};
+        Container cont = new Container();
       Container container1 = new Container(group1);
-      Container container2 = new Container(group2);
+        System.out.println("is empty?" + container1.isEmpty());
+        Container container2 = new Container(group2);
       Container container3 = new Container(group3);
         System.out.println(container1.isEmpty());
         System.out.println(container1.size());
@@ -24,5 +26,6 @@ public class Main {
 //        System.out.println(container1.removeAll(container2));
         System.out.println(container1.iterator().hasNext());
         System.out.println(container1.iterator().next());
+
     }
 }
