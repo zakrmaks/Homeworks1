@@ -13,9 +13,9 @@ public class Main {
         Student[] group2 = new Student[]{john, mark, paul};
         Student[] group3 = new Student[]{petrosian, vasosian, multosian};
         Container cont = new Container();
-        cont.add(petrosian);
+//        cont.add(petrosian);
       Container container1 = new Container(group1);
-        System.out.println("is empty?" + container1.isEmpty());
+        System.out.println("is empty?" + cont.isEmpty());
         Container container2 = new Container(group2);
       Container container3 = new Container(group3);
         System.out.println(container1.isEmpty());

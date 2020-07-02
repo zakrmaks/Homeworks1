@@ -27,7 +27,7 @@ public class Container implements Collection {
 
     @Override
     public boolean isEmpty() {
-        return array == null;
+        return size == 0;
     }
 
 
