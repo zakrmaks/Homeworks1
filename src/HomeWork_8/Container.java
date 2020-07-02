@@ -7,18 +7,22 @@ import java.util.Iterator;
 
 
 public class Container implements Collection {
-    Object[] array;
+   private Object[] array;
+    private int size;
 
     public Container() {
+        size = 0;
+        array = new Object[size];
     }
 
     public Container(Object[] array) {
-        this.array = toArray(array);
+        this.array = array;
+        size = array.length;
     }
 
     @Override
     public int size() {
-        return array.length;
+        return size;
     }
 
     @Override
@@ -64,7 +68,7 @@ public class Container implements Collection {
 
     @Override
     public boolean add(Object o) {
-        Object[] temp = new Object[array.length + 1];
+        Object[] temp = new Object[size + 1];
         for (int i = 0; i < array.length; i++) {
             temp[i] = array[i];
         }

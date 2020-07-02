@@ -13,6 +13,7 @@ public class Main {
         Student[] group2 = new Student[]{john, mark, paul};
         Student[] group3 = new Student[]{petrosian, vasosian, multosian};
         Container cont = new Container();
+        cont.add(petrosian);
       Container container1 = new Container(group1);
         System.out.println("is empty?" + container1.isEmpty());
         Container container2 = new Container(group2);
