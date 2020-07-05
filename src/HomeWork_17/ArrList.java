@@ -6,13 +6,12 @@ import java.util.Iterator;
 
 public class ArrList<E> implements Collection<E> {
 
-    private E[] array;
+    private Object[] array;
     private int size;
 
     public ArrList() {
         this.size = 0;
-        Object[] temp = new Object[size];
-        this.array = (E[])temp;
+        array = new Object[size];
     }
 
     @Override
@@ -34,7 +33,7 @@ public class ArrList<E> implements Collection<E> {
 
     @Override
     public boolean contains(Object o) {
-        for (E element : array) {
+        for (Object element : array) {
             if (element.equals(o))
                 return true;
         }
@@ -56,9 +55,9 @@ public class ArrList<E> implements Collection<E> {
 
             @Override
             public E next() {
-                E result = array[index];
+                Object result = array[index];
                 index++;
-                return result;
+                return (E)result;
             }
         };
     }
@@ -138,13 +137,13 @@ return false;
 
     }
 
-    private <E> E[] addEllement(int numOfEll) {
+    private Object[] addEllement(int numOfEll) {
        Object[] temp = new Object[size+numOfEll];
         System.arraycopy(array, 0, temp, 0, size);
-        E[] tempCast = (E[]) temp;
-        return tempCast;
+
+        return temp;
     }
-    private <E> E[] deleteNullElement() {
+    private Object[] deleteNullElement() {
         Object[] temp = new Object[size];
         int count = 0;
         int arrayCount = 0;
@@ -160,7 +159,7 @@ return false;
                 }
             }
         }
-        E[] tempCast = (E[]) temp;
-        return tempCast;
+
+        return temp;
     }
 }
