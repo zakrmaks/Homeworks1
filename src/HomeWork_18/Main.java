@@ -24,7 +24,7 @@ Gson gson = new Gson();
 //        System.out.println(student.toString());
         String JSON = gson.toJson(student);
         System.out.println(JSON);
-        FileWriter writer = new FileWriter("D:\\hillel\\Homeworks\\src\\HomeWork_18\\text.txt");
+        FileWriter writer = new FileWriter("D:\\hillel\\Homeworks\\src\\HomeWork_18\\student.json");
         writer.write(JSON);
         writer.flush();
     }
