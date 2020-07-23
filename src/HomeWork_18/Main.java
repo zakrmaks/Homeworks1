@@ -20,7 +20,7 @@ Gson gson = new Gson();
         }
         String JSON = gson.toJson(student);
         System.out.println(JSON);
-        FileWriter writer = new FileWriter("D:\\hillel\\Homeworks\\src\\HomeWork_18\\student.json");
+        FileWriter writer = new FileWriter("C:\\Users\\zakrm\\IdeaProjects\\Homeworks\\src\\HomeWork_18\\student.json");
         writer.write(JSON);
         writer.flush();
     }
