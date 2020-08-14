@@ -45,7 +45,7 @@ public class ArrList<E> implements Collection<E> {
     @Override
     public Iterator<E> iterator() {
 
-        return new Iterator<>() {
+        return new Iterator() {
             private int index = 0;
 
             @Override

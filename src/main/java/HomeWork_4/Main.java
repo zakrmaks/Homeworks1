@@ -9,7 +9,7 @@ public class Main {
             Student[] students = new Student[NUMBER_OF_STUDENTS];
             addStudent(students, "Петров");
             addStudent(students, "Сидоров");
-            addStudent(students, "Иванов");
+            addStudent(students, "Iванов");
             setMarks(students, "петров", 9, 5);
             print(students);
 //        deleteStudent(students, "Сидоров");
