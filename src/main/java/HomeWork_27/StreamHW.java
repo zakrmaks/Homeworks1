@@ -16,6 +16,7 @@ public class StreamHW {
         students.add(new Student("Varkena"));
         students.add(new Student("Manga"));
         students.add(new Student("Ponchika"));
+        students.add(new Student("Markenal"));
         Stream stream = students.stream();
 
         stream.filter(StreamHW::isContainVowelsLetter).map(obj -> {return obj.toString().toUpperCase();}).sorted().forEach(System.out::println);
