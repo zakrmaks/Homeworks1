@@ -6,25 +6,32 @@ import java.util.stream.Stream;
 
 public class Function {
     public static void main(String[] args) {
-        List<Integer> numbers = new ArrayList<Integer>();
-        numbers.add(-5);
-        numbers.add(2);
-        numbers.add(5);
-        numbers.add(6);
-        numbers.add(9);
+        List<Double> numbers = new ArrayList<Double>();
+        numbers.add(-5.0);
+        numbers.add(2.0);
+        numbers.add(5.0);
+        numbers.add(6.0);
+        numbers.add(9.0);
         System.out.println(sumOfNumbers(numbers));
-
+        System.out.println(avarage(numbers));
 
     }
-    public static int sumOfNumbers (List<Integer> numbers){
-        final Stream<Integer> stream = numbers.stream();
-        final int number = stream.filter(integer -> {
+    static Double avarage (List<Double> list){
+        Double result = 0.0;
+        for (Double i : list){
+            result += i;
+        }
+        return result/list.size();
+    }
+    public static Double sumOfNumbers (List<Double> numbers){
+        final Stream<Double> stream = numbers.stream();
+        final double number = stream.filter(integer -> {
             return integer > 0;
         }).map(integer -> {
             return integer * integer;
         }).filter(integer ->{
             return integer % 2 == 0;
-        }).mapToInt(x ->x).sum();
+        }).mapToDouble(x ->x).sum();
 
         return number;
     }
